@@ -199,7 +199,29 @@ axios.get(`https://alfians-api.herokuapp.com/api/yta?url=${teks}`).then((res) =>
             console.log("done")
          })
    }
+{
+  if (text.includes("!loli"))
+   {
+      var url = 'https://alfians-api.herokuapp.com/api/randomloli'
+      axios.get(url)
+         .then((result) =>
+         {
+            let $ = cheerio.load(result.data);
+            var author = $('a[class="auteurfbnaam"]').contents().first().text();
+            var kata = $('q[class="fbquote"]').contents().first().text();
 
+            conn.sendMessage(
+               id,
+               `
+     _${kata}_
+        
+    
+	*~${author}*
+         `, MessageType.text
+            );
+
+         });
+   }
 
    if (text.includes("!quotes"))
    {
